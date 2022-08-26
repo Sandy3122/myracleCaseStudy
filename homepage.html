@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subjects Management Service</title>
+    <!-- BootStrap Css  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- BootStrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    <!-- Sweet Alert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+      
+        body
+      {
+        background-image: linear-gradient(to left, rgb(232, 217, 217), rgb(86, 153, 240));
+      }
+
+        div{
+            margin-top:80px;
+        }
+        h1{
+            margin-top:20px;
+            font-family:Lucida Handwriting; /*Cursive*/
+            text-align:center;
+            color:#1417dc;
+            text-shadow: 4px 4px rgb(165, 157, 157);
+        }
+        
+    </style>
+</head>
+<body class="container col-lg-6">
+
+    <h1>Find Your Subjects</h1><hr><br>
+    <div class="input-group container ">
+        <input type="search" class="form-control rounded" id="getitem" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+        <button type="button" class="btn btn-outline-primary" onclick="Get()">search</button>
+      </div>
+
+      <div>
+        <h4 id="data"></h4>
+      </div>
+
+      <div>
+        <!-- <h4>Add Subjects</h4><br> -->
+        <a href="/send"><button type="button" class="btn btn-outline-primary">Add Subjects</button></a>
+      </div>
+      
+</body>
+
+
+<script>
+
+    function Get(){
+        var data = {
+            searchItem : document.getElementById("getitem").value
+        }
+        var searchValue = document.getElementById("getitem").value;
+
+    fetch('/search', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          }) 
+            .then(response => response.json())
+            .then((data) => {
+              if(searchValue ==""){
+                swal({
+                  title: "Fields Empty!",
+                  text: "Please, Enter Item To Be Searched!",
+                  icon: "warning",
+                  button: "OK",
+                });
+                return false;
+              }
+              console.log(data)
+              for (var i=0; i<data.length ; i++){
+              var showData = document.getElementById('data');
+
+              showData.innerHTML += "<ol>" + "* Subject Id :" + (data[i].subjectId) + "<br>" +  "<br>" + "* Subject Name :"+ (data[i].subjectName) + "<br>" +  "<br>" + "* Subject Code :"+ (data[i].subjectCode) + "<br>" +  "<br>" + "* Professor Name :"+ (data[i].professorName) + "<br>" +  "<br>" + "* Professor Degree :"+ (data[i].professorDegree) + "<br>" + "<br>" + "<br>" +  "</ol>"
+
+              }
+
+            })
+            .catch((error) => {
+              alert("Error!")
+            });
+        }
+
+
+</script>
+
+</html>

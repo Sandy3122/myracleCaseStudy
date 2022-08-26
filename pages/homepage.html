@@ -29,14 +29,25 @@
             color:#1417dc;
             text-shadow: 4px 4px rgb(165, 157, 157);
         }
+        .heading{
+          display: flex;
+          justify-content:space-between;
+        }
+        .lobtn{
+          margin-top: 2rem;
+        }
         
     </style>
 </head>
 <body class="container col-lg-6">
 
-    <h1>Find Your Subjects</h1><hr><br>
-    <div class="input-group container ">
-        <input type="search" class="form-control rounded" id="getitem" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+  <div class="heading">
+    <h1>Find Your Subjects</h1>
+    <a href="/logout"><button type="button" class="lobtn btn btn-outline-primary">Logout</button></a><br>
+  </div>
+  <hr>
+    <div class="input-group container">
+        <input type="search" class="form-control rounded" id="getitem" placeholder="Search For Your Subjects" aria-label="Search" aria-describedby="search-addon" />
         <button type="button" class="btn btn-outline-primary" onclick="Get()">search</button>
       </div>
 
@@ -48,6 +59,28 @@
         <!-- <h4>Add Subjects</h4><br> -->
         <a href="/send"><button type="button" class="btn btn-outline-primary">Add Subjects</button></a>
       </div>
+
+      <!-- <div>
+        <table class="table" id="tableData">
+          <thead>
+            <tr>
+              <th scope="col">Subject Id</th>
+              <th scope="col">Subject Name</th>
+              <th scope="col">Subject Code</th>
+              <th scope="col">Professor Name</th>
+              <th scope="col">Professor Degree</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div> -->
       
 </body>
 
@@ -91,6 +124,32 @@
               alert("Error!")
             });
         }
+
+//         var div = document.getElementById('tableData');
+//         div.innerHTML = "";
+//         for (var i=0; i < data.length; i++){
+//           var variable = '' + 
+// // '<thead>' + 
+// // '            <tr>' + 
+// // '              <th scope="col">#</th>' + 
+// // '              <th scope="col">First</th>' + 
+// // '              <th scope="col">Last</th>' + 
+// // '              <th scope="col">Handle</th>' + 
+// // '            </tr>' + 
+// // '          </thead>' + 
+// // '          <tbody>' + 
+// '            <tr>' + 
+// '              <td>"'+data[i].subjectId+'"</td>' + 
+// '              <td>"'+data[i].subjectName+'"</td>' + 
+// '              <td>"'+data[i].subjectCode+'"</td>' + 
+// '              <td>"'+data[i].professorName+'"</td>' + 
+// '              <td>"'+data[i].professorDegree+'"</td>' + 
+// '            </tr>' +  
+// '          </tbody>' + 
+// '';
+          
+
+//         }
 
 
 </script>
